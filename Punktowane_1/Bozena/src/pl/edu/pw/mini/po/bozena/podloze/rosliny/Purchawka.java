@@ -17,4 +17,8 @@ public class Purchawka extends Roslina {
 		System.out.println("Puffff");
 	}
 	
+	public String toString() {
+		return "o";
+	}
+	
 }

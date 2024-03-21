@@ -23,4 +23,8 @@ public class MinaPrzeciwczolgowa extends Mina {
 		}
 	}
 	
+	public String toString() {
+		return "X";
+	}
+	
 }

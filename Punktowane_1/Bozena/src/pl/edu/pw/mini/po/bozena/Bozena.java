@@ -17,6 +17,7 @@ public class Bozena {
 		Random random = new Random();
 		
 		int wiersz = random.nextInt(tablica.length);
+		//System.out.println("Wiersz: " + wiersz);
 		
 		for (int j=0; j<tablica.length; j++) {
 			if (tablica[wiersz][j] != null) {

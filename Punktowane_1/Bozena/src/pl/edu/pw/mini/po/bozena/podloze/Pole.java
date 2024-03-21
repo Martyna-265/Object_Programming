@@ -1,5 +1,6 @@
 package pl.edu.pw.mini.po.bozena.podloze;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import pl.edu.pw.mini.po.bozena.podloze.miny.Mina;
@@ -18,7 +19,7 @@ public class Pole {
 		tablica = new ElementyPodloza[100][100];
 
 		for (int i=0; i<tablica.length; i++) {
-			for (int j=0; j<tablica.length; j++) {
+			for (int j=0; j<tablica[i].length; j++) {
 				int p = random.nextInt(100);
 				if (p<10) {
 					tablica[i][j] = new Trawa();
@@ -44,5 +45,23 @@ public class Pole {
 			}
 		}
 	}
+
+//	public String toString() {
+//		
+//		String wynik = "";
+//		
+//		for (int i=0; i<this.tablica.length; i++) {
+//			for (int j=0; j<this.tablica[i].length; j++) {
+//				if (tablica[i][j] == null) {
+//					wynik += " - ";
+//				}
+//				else {
+//					wynik += " " + tablica[i][j] + " ";
+//				}
+//			}
+//			wynik += "\n";
+//		}
+//		return wynik;
+//	}
 
 }

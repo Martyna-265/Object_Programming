@@ -12,4 +12,8 @@ public class Trawa extends Roslina {
 		this.ekologiczna = true;
 	}
 
+	public String toString() {
+		return "|";
+	}
+
 }
