@@ -5,16 +5,17 @@ import java.util.Random;
 import pl.edu.pw.mini.po.bozena.podloze.ElementyPodloza;
 import pl.edu.pw.mini.po.bozena.podloze.Pole;
 
-public class Bozena {
+public class Bozena implements Przeciwminowy{
 
-	public Pole pole;
+	private Pole pole;
 	
-	public Bozena() {
-		this.pole = new Pole();
+	public Bozena(Pole pole) {
+		this.pole = pole;
 	}
 	
-	public static void destroyMines(ElementyPodloza tablica[][]) {
+	public void destroyMines() {
 		Random random = new Random();
+		ElementyPodloza tablica[][] = this.pole.tablica;
 		
 		int wiersz = random.nextInt(tablica.length);
 		//System.out.println("Wiersz: " + wiersz);

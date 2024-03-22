@@ -2,8 +2,6 @@ package pl.edu.pw.mini.po.bozena.podloze.miny;
 
 import java.util.Random;
 
-import pl.edu.pw.mini.po.bozena.podloze.Obudowa;
-
 public class MinaPrzeciwpiechotna extends Mina {
 
 	Random random = new Random();

@@ -1,23 +1,33 @@
 package pl.edu.pw.mini.po.bozena;
 
-import java.util.Random;
-
 public class Demonstrator {
 
-	public static void main(String[] args) {
-		
-		Bozena bozena = new Bozena();
-		
-		//System.out.println(bozena.pole);
+//	public static void main(String[] args) {
+//		
+//		Pole pole = new Pole();
+//		Bozena bozena = new Bozena(pole);
+//		
+//		//System.out.println(bozena.pole);
+//		
+//		System.out.println("Dzialanie Bozeny:");
+//
+//		for (int i=0; i<50; i++) {
+//			//Przeciwminowy.destroyMines(bozena.pole.tablica);
+//			bozena.destroyMines();
+//			System.out.println();
+//		}
+//		
+//		//System.out.println(bozena.pole);
+//		
+//	}
+	
+	public void uruchomTral(Przeciwminowy urzadzenie) {
 		
 		System.out.println("Dzialanie Bozeny:");
-
 		for (int i=0; i<50; i++) {
-			Bozena.destroyMines(bozena.pole.tablica);
+			urzadzenie.destroyMines();
 			System.out.println();
 		}
-		
-		//System.out.println(bozena.pole);
 		
 	}
 
