@@ -8,13 +8,12 @@ public class MuchomorSzarawy extends Grzyb {
 	Random random = new Random();
 	
 	private Toksyny toksyny;
-	private Year rokOdkryciaGatunku;
+	private static Year rokOdkryciaGatunku = Year.of(1783);
 	
 	public MuchomorSzarawy() {
 		super();
 		this.masaOwocnika = random.nextInt(50) + 25;
 		this.toksyny = Toksyny.TRUJACE;
-		this.rokOdkryciaGatunku = Year.of(1783);
 	}
 	
 	@Override

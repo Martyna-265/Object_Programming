@@ -8,7 +8,7 @@ import pl.edu.pw.mini.po.grzybobranie.las.grzyby.MuchomorKolczastoglowy;
 import pl.edu.pw.mini.po.grzybobranie.las.grzyby.MuchomorSromotnikowy;
 import pl.edu.pw.mini.po.grzybobranie.las.grzyby.MuchomorSzarawy;
 
-public class Las {
+public class Las implements SaGrzyby {
 
 	Random random = new Random();
 	
