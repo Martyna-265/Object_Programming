@@ -47,4 +47,7 @@ public class Towar {
 		return nazwa;
 	}
 	
+	public void accept(Visitor visitor) {
+	}
+	
 }

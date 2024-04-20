@@ -82,4 +82,8 @@ private static final Random random = new Random();
 		return wartoscCzarnorynkowa;
 	}
 	
+	public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+	
 }

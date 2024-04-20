@@ -7,6 +7,7 @@ import java.util.Set;
 import pl.edu.pw.mini.po.przejscie_graniczne.podrozni.Podrozny;
 import pl.edu.pw.mini.po.przejscie_graniczne.towary.Towar;
 import pl.edu.pw.mini.po.przejscie_graniczne.towary.TrefnyTowar;
+import pl.edu.pw.mini.po.przejscie_graniczne.towary.TowarVisitor;
 
 public class Celnik {
 
@@ -35,11 +36,15 @@ public class Celnik {
 		for (Towar towar : towary) {
 			// Tutaj powinno być sprawdzenie visitorem, ale nie ma
 			System.out.println("- " + towar.getNazwa());
-			if (towar instanceof TrefnyTowar) {
-				towar = (TrefnyTowar) towar;
-				System.out.println("wartosc czarnorynkowa: " + ((TrefnyTowar) towar).getWartoscCzarnorynkowa());
-				sumaWartosciCzarnorynkowej += ((TrefnyTowar) towar).getWartoscCzarnorynkowa();
-			}
+//			if (towar instanceof TrefnyTowar) {
+//				towar = (TrefnyTowar) towar;
+//				System.out.println("wartosc czarnorynkowa: " + ((TrefnyTowar) towar).getWartoscCzarnorynkowa());
+//				sumaWartosciCzarnorynkowej += ((TrefnyTowar) towar).getWartoscCzarnorynkowa();
+//			}
+			// Już jest sprawdzenie visitorem! :)
+			TowarVisitor visitor = new TowarVisitor();
+			towar.accept(visitor);
+			sumaWartosciCzarnorynkowej += visitor.getSumaWartosciCzarnorynkowej();
 		}
 		System.out.println("Suma wartosci czarnorynkowej: " + sumaWartosciCzarnorynkowej);
 		if (sumaWartosciCzarnorynkowej > 25000) {
