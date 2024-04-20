@@ -20,25 +20,26 @@ public class PrzejscieGraniczne {
 	
 	private List<Podrozny> podrozni;
 	private List<Celnik> celnicy;
-	private Areszt areszt;
+	public Areszt areszt;
 
 	public PrzejscieGraniczne() {
 		this.podrozni = new LinkedList<Podrozny>();
 		this.celnicy = new ArrayList<Celnik>();
+		this.areszt = new Areszt();
 		
 		int i = 0;
 		while (i < 50) {
 			podrozni.add(new Turysta(i));
+			i++;
 		}
-		System.out.println("Dodano turystow");
 		while (i < 100) {
 			podrozni.add(new Przemytnik(i));
+			i++;
 		}
-		System.out.println("Dodano przemytnikow");
 		while (i < 150) {
 			podrozni.add(new Szpieg(i));
+			i++;
 		}
-		System.out.println("Dodano szpiegow");
 		Collections.shuffle(podrozni);
 		
 		for (int j = 0; j < 5; j++) {
@@ -54,7 +55,7 @@ public class PrzejscieGraniczne {
 			} catch (NieletniException e) {
 				e.printStackTrace();
 			}
-			podrozni.remove(podrozny);
+			//podrozni.remove(podrozny);
 		}
 	}
 	

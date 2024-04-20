@@ -22,4 +22,8 @@ public class Areszt {
 		}
 	}
 	
+	public int getSizeAreszt() {
+		return aresztowani.size();
+	}
+	
 }

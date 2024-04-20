@@ -21,10 +21,10 @@ public class Celnik {
 	}
 	
 	public void control(Podrozny podrozny) throws NieletniException {
-		System.out.println("Kontrola podróżnego: " + podrozny);
 		int sprawdzenie = random.nextInt(10);
 		if (sprawdzenie < 2) {
-			System.out.println("Sprawdzamy towary:");
+			System.out.println("Kontrola podróżnego: " + podrozny);
+			System.out.println("Towary:");
 			sprawdzTowar(podrozny);
 		}
 	}
@@ -41,7 +41,8 @@ public class Celnik {
 				sumaWartosciCzarnorynkowej += ((TrefnyTowar) towar).getWartoscCzarnorynkowa();
 			}
 		}
-		if (sumaWartosciCzarnorynkowej > 50000) {
+		System.out.println("Suma wartosci czarnorynkowej: " + sumaWartosciCzarnorynkowej);
+		if (sumaWartosciCzarnorynkowej > 25000) {
 			System.out.println("Jest pan aresztowany!");
 			areszt.aresztuj(podrozny);
 		}
