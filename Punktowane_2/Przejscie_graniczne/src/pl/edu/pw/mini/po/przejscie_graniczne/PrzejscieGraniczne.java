@@ -2,6 +2,7 @@ package pl.edu.pw.mini.po.przejscie_graniczne;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -48,14 +49,17 @@ public class PrzejscieGraniczne {
 	}
 	
 	public void doJob() {
-		for (Podrozny podrozny : podrozni) {
+		Iterator<Podrozny> iterator = podrozni.iterator();
+		//for (Podrozny podrozny : podrozni) {
+		while (iterator.hasNext()) {
 			Celnik celnik = celnicy.get(random.nextInt(celnicy.size()));
 			try {
-				celnik.control(podrozny);
+				celnik.control(iterator.next());
 			} catch (NieletniException e) {
 				e.printStackTrace();
 			}
 			//podrozni.remove(podrozny);
+			iterator.remove();
 		}
 	}
 	

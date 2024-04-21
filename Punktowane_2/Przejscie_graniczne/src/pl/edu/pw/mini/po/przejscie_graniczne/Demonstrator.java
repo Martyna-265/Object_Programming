@@ -6,8 +6,6 @@ public class Demonstrator {
 		
 		PrzejscieGraniczne przejscieGraniczne = new PrzejscieGraniczne();
 		przejscieGraniczne.doJob();
-		
-		System.out.println(przejscieGraniczne.areszt.getSizeAreszt());
 
 	}
 
