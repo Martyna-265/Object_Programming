@@ -25,7 +25,7 @@ public class KebabParser {
 			Scanner scanner = new Scanner(plik);
 			scanner.useDelimiter("---");
 			
-			while (scanner.hasNextLine()) {
+			while (scanner.hasNextLine() & scanner.hasNext()) {
 				String rozmiarS = scanner.next().trim().toUpperCase();
 				Rozmiar rozmiar = Rozmiar.valueOf(rozmiarS);
 				if (scanner.hasNext("no") | scanner.hasNext("yes")) {
@@ -37,8 +37,6 @@ public class KebabParser {
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 		}
 		
