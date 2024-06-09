@@ -15,7 +15,8 @@ public abstract class MyFigure extends Thread{
 	private Object lock;
 	
 	public MyFigure(int x, int y, int side, MyGraphicPanel panel, Object lock) {
-		this.id = counter++;
+		this.id = counter;
+		counter = counter + 10;
 		this.x = x;
 		this.y = y;
 		this.side = side;
