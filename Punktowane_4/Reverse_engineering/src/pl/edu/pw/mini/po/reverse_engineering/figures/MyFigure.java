@@ -6,8 +6,8 @@ import pl.edu.pw.mini.po.reverse_engineering.app.panels.MyGraphicPanel;
 
 public abstract class MyFigure extends Thread{
 
-	static int counter = 10;
-	private int id;
+	static int counter;
+	private int id = counter += 10;
 	private int x;
 	private int y;
 	private int side;
@@ -15,14 +15,13 @@ public abstract class MyFigure extends Thread{
 	private Object lock;
 	
 	public MyFigure(int x, int y, int side, MyGraphicPanel panel, Object lock) {
-		this.id = counter;
-		counter = counter + 10;
+		super();
 		this.x = x;
 		this.y = y;
 		this.side = side;
 		this.panel = panel;
 		this.lock = lock;
-		
+		start();
 	}
 	
 	public void run() {

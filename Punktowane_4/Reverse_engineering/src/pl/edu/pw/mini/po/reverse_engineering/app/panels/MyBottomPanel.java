@@ -19,6 +19,7 @@ public class MyBottomPanel extends JPanel {
 		add(button);
 		
 		JTextField text = new JTextField();
+		text.setEnabled(false);
 		text.setText("");
 		
 		button.addActionListener(new ActionListener() {

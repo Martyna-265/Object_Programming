@@ -66,14 +66,12 @@ public class MyGraphicPanel extends JPanel {
 	
 	public void addSquare(int x, int y, Object lock) {
 		MyFigure square = new MySquare(x, y, 50, this, lock);
-		square.start();
 		figureList.add(square);
 		repaint();
 	}
 	
 	public void addCircle(int x, int y, Object lock) {
 		MyFigure circle = new MyCircle(x, y, 50, this, lock);
-		circle.start();
 		figureList.add(circle);
 		repaint();
 	}
@@ -99,7 +97,9 @@ public class MyGraphicPanel extends JPanel {
 	public int getRays() {
 		int rays = 0;
 		for (MyFigure figure : figureList) {
-			rays += figure.getSide();
+			if (figure instanceof MyCircle) {
+				rays += figure.getSide();
+			}
 		}
 		return rays;
 	}
