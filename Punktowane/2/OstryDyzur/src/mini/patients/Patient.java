@@ -32,7 +32,7 @@ public abstract class Patient {
             int p = random.nextInt(4);
             generatedProblems.add(Problem.values()[p]);
             if (tick) {
-                generatedProblems.add(Problem.pogryzieniePrzezKleszcza);
+                generatedProblems.add(Problem.tickBite);
             }
             return generatedProblems;
         };
@@ -48,6 +48,14 @@ public abstract class Patient {
 
     public void applyDiagnose(Diagnose diagnose) {
         diagnose.diagnoseMe(this);
+    }
+
+    public Set<Problem> getProblems() {
+        return problems;
+    }
+
+    public int getAge() {
+        return age;
     }
 
 }

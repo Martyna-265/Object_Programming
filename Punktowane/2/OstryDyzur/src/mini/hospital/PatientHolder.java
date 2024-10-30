@@ -5,6 +5,8 @@ import mini.patients.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Set;
+import java.util.function.Consumer;
 
 public class PatientHolder {
 
@@ -52,6 +54,50 @@ public class PatientHolder {
                 System.out.println("Zdrowy");
             }
         }
+    }
+
+    public ArrayList<Patient> extractDemandingPatients() {
+        ArrayList<Patient> demandingPatients = new ArrayList<>();
+
+        Consumer<Patient> demandingPatientsExtractor = p -> {
+            if (p instanceof DemandingPatient && ((DemandingPatient) p).getDemandingLevel() != DemandingLevel.big) {
+                demandingPatients.add(p);
+            }
+        };
+
+        patients.forEach(demandingPatientsExtractor);
+
+        return demandingPatients;
+    }
+
+    public void detectNotInsuredPatients() {
+
+        Consumer<Patient> notInsuredPatientsDetector = p -> {
+            if (!(p instanceof InsuredPatient)) {
+                System.out.println("Brak ubezpieczenia!");
+            }
+        };
+
+        patients.forEach(notInsuredPatientsDetector);
+    }
+
+    public void detectTickBiten() {
+
+        patients.forEach(new Consumer<Patient>() {
+            int numberOfTickBiten = 0;
+
+            @Override
+            public void accept(Patient patient) {
+                Set<Problem> patientsProblems = patient.getProblems();
+                if (patientsProblems.contains(Problem.tickBite)) {
+                    numberOfTickBiten++;
+                }
+                if (numberOfTickBiten % 3 == 0) {
+                    System.out.println("To juz kolejna trojka pacjentow pogryzionych przez kleszcze w tym tygodniu");
+                }
+            }
+        });
+
     }
 
 }

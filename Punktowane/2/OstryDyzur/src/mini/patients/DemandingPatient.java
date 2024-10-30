@@ -28,4 +28,8 @@ public class DemandingPatient extends InsuredPatient {
 
         this.demandingLevel = demandingLevelGenerator.generateDemandingLevel();
     }
+
+    public DemandingLevel getDemandingLevel() {
+        return demandingLevel;
+    }
 }

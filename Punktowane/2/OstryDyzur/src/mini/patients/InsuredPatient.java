@@ -23,4 +23,9 @@ public abstract class InsuredPatient extends Patient {
 
         this.idUbezpieczenia = insuranceIdGenerator.generateInsuranceId();
     }
+
+    public int getIdUbezpieczenia() {
+        return idUbezpieczenia;
+    }
+
 }

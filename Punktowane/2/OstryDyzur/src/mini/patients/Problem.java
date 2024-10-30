@@ -1,6 +1,6 @@
 package mini.patients;
 
 public enum Problem {
-    pogryzieniePrzezKleszcza, goraczka, spiaczka, ranaKluta;
+    tickBite, fever, coma, stabWound;
 
 }
