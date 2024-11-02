@@ -19,4 +19,8 @@ public class SausageHolder {
         }
         Collections.shuffle(wedliny);
     }
+
+    public LinkedList<Mieso> getWedliny() {
+        return wedliny;
+    }
 }

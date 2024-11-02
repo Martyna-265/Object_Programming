@@ -27,4 +27,20 @@ public abstract class Wedlina extends Mieso {
         }
         this.dataPrzydatnosci = dateGenerator.get();
     }
+
+    public LocalDate getDataPrzydatnosci() {
+        return dataPrzydatnosci;
+    }
+
+    public boolean isSzczelneOpakowanie() {
+        return szczelneOpakowanie;
+    }
+
+    public void setGoodDataPrzydatnosci() {
+        this.dataPrzydatnosci = dateGenerator.get();
+    }
+
+    public void setDataPrzydatnosci(LocalDate dataPrzydatnosci) {
+        this.dataPrzydatnosci = dataPrzydatnosci;
+    }
 }

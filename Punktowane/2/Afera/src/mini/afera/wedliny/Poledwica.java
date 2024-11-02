@@ -6,4 +6,13 @@ public class Poledwica extends Wedlina {
         super();
     }
 
+    @FunctionalInterface
+    interface PoledwicaMakeUp {
+        void makeUp(Poledwica poledwica);
+    }
+
+    public void makeMeReadyForConsumption(PoledwicaMakeUp makeUp) {
+        makeUp.makeUp(this);
+    }
+
 }

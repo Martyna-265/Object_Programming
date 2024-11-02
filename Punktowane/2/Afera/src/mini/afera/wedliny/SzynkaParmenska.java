@@ -11,4 +11,14 @@ public class SzynkaParmenska extends Szynka {
         super();
         this.certyfikat = Certyfikat.values()[random.nextInt(3)];
     }
+
+    @FunctionalInterface
+    interface SzynkaParmenskaMakeUp {
+        void makeUp(SzynkaParmenska szynkaParmenska);
+    }
+
+    public void makeMeReadyForConsumption(SzynkaParmenskaMakeUp makeUp) {
+        makeUp.makeUp(this);
+    }
+
 }

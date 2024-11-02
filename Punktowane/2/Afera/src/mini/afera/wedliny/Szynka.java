@@ -18,4 +18,11 @@ public abstract class Szynka extends Wedlina {
         }
     }
 
+    public boolean isBakteriaListeria() {
+        return bakteriaListeria;
+    }
+
+    public void setBakteriaListeria() {
+        this.bakteriaListeria = false;
+    }
 }

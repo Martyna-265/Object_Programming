@@ -28,4 +28,10 @@ public abstract class Mieso {
         System.out.println(mieso.idProduktu);
     }
 
+    public int getIdProduktu() {
+        return idProduktu;
+    }
+
+    public void makeMeReadyForConsumption(Object makeUp) {};
+
 }
