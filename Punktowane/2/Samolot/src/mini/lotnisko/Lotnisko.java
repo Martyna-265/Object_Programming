@@ -66,7 +66,7 @@ public class Lotnisko {
                     zaladunek = random.nextInt(10);
                 }
                 samolot.odprawa(zaladunek);
-            } catch (WyjatekLotniczy | WyjatekEkonomiczny e) {
+            } catch (WyjatekLotniczy e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -86,7 +86,7 @@ public class Lotnisko {
             try {
                 int p = random.nextInt(400);
                 samolot.odprawa(p);
-            } catch (WyjatekLotniczy | WyjatekEkonomiczny e) {
+            } catch (WyjatekLotniczy e) {
                 System.out.println(e.getMessage());
             }
         };
@@ -132,12 +132,12 @@ public class Lotnisko {
         };
 
         Comparator<Samolot> nazwaComparator = (Samolot s1, Samolot s2) -> {
-            //if (s1.getNazwa().length() > 5 && s2.getNazwa().length() > 5) {
+            if (s1.getNazwa().length() > 5 && s2.getNazwa().length() > 5) {
                 return s1.getNazwa().compareTo(s2.getNazwa());
-            //}
-            //else {
-            //    return 0;
-            //}
+            }
+            else {
+                return Integer.compare(s1.getNazwa().length(), s2.getNazwa().length());
+            }
         };
 
         if (opcja == 0) {
@@ -149,7 +149,6 @@ public class Lotnisko {
 
     }
 
-    @FunctionalInterface
     interface RandomGenerator {
         void losoweSortowanie();
     }

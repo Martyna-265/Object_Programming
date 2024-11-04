@@ -12,7 +12,7 @@ public class SamolotTowarowy extends Samolot {
     }
 
     @Override
-    public void odprawa(int iloscZaladunku) throws WyjatekLotniczy, WyjatekEkonomiczny {
+    public void odprawa(int iloscZaladunku) throws WyjatekLotniczy {
         super.odprawa(iloscZaladunku);
         if (iloscZaladunku+aktualnyLadunek < maxLadunek/2) {
             this.setStan(Stan.przedOdprawa);

@@ -1,5 +1,6 @@
 package mini.samoloty;
 
+// protected
 public class Mysliwiec extends Samolot {
 
     private int iloscRakiet;
@@ -16,7 +17,10 @@ public class Mysliwiec extends Samolot {
     }
 
     public void atak() {
-        if (this.getStan() == Stan.wPowietrzu) {
+        if (iloscRakiet <= 0) {
+            this.ladujemy();
+        }
+        else if (this.getStan() == Stan.wPowietrzu) {
             this.iloscRakiet--;
             System.out.println("Ataaaak");
             if (iloscRakiet <= 0) {
