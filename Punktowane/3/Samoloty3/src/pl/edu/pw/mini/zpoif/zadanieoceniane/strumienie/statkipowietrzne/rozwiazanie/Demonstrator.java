@@ -33,6 +33,30 @@ public class Demonstrator {
         System.out.println("Smiglowce o najwiekszym zasiegu:");
         System.out.println(analizator.get4SmiglowceONajwiekszymZasiegu());
 
+        System.out.println();
+        System.out.println("Spadochron siedzeniowy:");
+        System.out.println(analizator.getSiedzeniowySpadochron());
+
+        System.out.println();
+        System.out.println("Mapa szybowcow:");
+        System.out.println(analizator.getMapaSzybowcowPerDoskonalosc());
+
+        System.out.println();
+        System.out.println("Suma predkosci wznoszenia samolotow:");
+        System.out.println(analizator.getSumaPredkosciWznoszeniaSamolotow());
+
+        System.out.println();
+        System.out.println("Posortowane smiglowce i samoloty:");
+        System.out.println(analizator.getPosortowaneSmiglowceLubSamoloty());
+
+        System.out.println();
+        System.out.println("Nazwy spadochronow ratowniczych:");
+        System.out.println(analizator.zwrocNazwy());
+
+        System.out.println();
+        System.out.println("Zmiana nazwy:");
+        analizator.modyfikujNazwy();
+
     }
 
 }

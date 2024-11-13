@@ -1,13 +1,8 @@
 package pl.edu.pw.mini.zpoif.zadanieoceniane.strumienie.statkipowietrzne.rozwiazanie;
 
-import pl.edu.pw.mini.zpoif.zadanieoceniane.strumienie.statkipowietrzne.NapedzanyStatekPowietrzny;
-import pl.edu.pw.mini.zpoif.zadanieoceniane.strumienie.statkipowietrzne.Samolot;
-import pl.edu.pw.mini.zpoif.zadanieoceniane.strumienie.statkipowietrzne.Smiglowiec;
-import pl.edu.pw.mini.zpoif.zadanieoceniane.strumienie.statkipowietrzne.StatekPowietrzny;
+import pl.edu.pw.mini.zpoif.zadanieoceniane.strumienie.statkipowietrzne.*;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Analizator {
@@ -53,14 +48,104 @@ public class Analizator {
     }
 
     public List<NapedzanyStatekPowietrzny>get4SmiglowceONajwiekszymZasiegu() {
+        int rozmiar = napedzaneStatki.stream()
+                .filter(Smiglowiec.class::isInstance)
+                .collect(Collectors.toSet()).size();
+
         return napedzaneStatki.stream()
                 .filter(Smiglowiec.class::isInstance)
-                .limit(napedzaneStatki.size()-3) //śmigłowce już nie są rozmiaru napedzanych statków
+                .limit(rozmiar-3)
                 .map(Smiglowiec.class::cast)
                 .filter(statek -> statek.getSrednicaWirnika()>=15)
                 .sorted(Comparator.comparingDouble(NapedzanyStatekPowietrzny::getZasieg).reversed())
                 .limit(4)
                 .collect(Collectors.toList());
+    }
+
+    SpadochronRatowniczy getSiedzeniowySpadochron() {
+        return wszystkieStatki.stream()
+                .filter(SpadochronRatowniczy.class::isInstance)
+                .map(SpadochronRatowniczy.class::cast)
+                .filter(SpadochronRatowniczy::isSiedzeniowy)
+                .max(Comparator.comparingInt(SpadochronRatowniczy::getMinimalnaWysokosc))
+                .orElse(null);
+    }
+
+    Map<Integer, Szybowiec> getMapaSzybowcowPerDoskonalosc() {
+        return wszystkieStatki.stream()
+                .filter(Szybowiec.class::isInstance).skip(1)
+                .map(Szybowiec.class::cast)
+                .collect(Collectors.toMap(Szybowiec::getDoskonalosc, szybowiec -> szybowiec,
+                        (existing, replacement) -> existing.getTyp().length() >= replacement.getTyp().length() ?
+                        existing : replacement));
+    }
+
+    double getSumaPredkosciWznoszeniaSamolotow() {
+        List<Samolot> samoloty = napedzaneStatki.stream()
+                .filter(Samolot.class::isInstance)
+                .map(Samolot.class::cast)
+                .skip(3)
+                .filter(samolot -> samolot.getMasa() <= 15000)
+                .collect(Collectors.toList());
+
+        if (!samoloty.isEmpty()) {
+            samoloty.removeLast();
+        }
+
+        return samoloty.stream().limit(5)
+                .mapToDouble(Samolot::getPredkoscWznoszenia).sum();
+
+    }
+
+    Map<String, StatekPowietrzny> getPosortowaneSmiglowceLubSamoloty() {
+
+        return napedzaneStatki.stream()
+                .skip(10)
+                .filter(statek -> statek instanceof Samolot || statek instanceof Smiglowiec)
+                .sorted(Comparator.comparingDouble(NapedzanyStatekPowietrzny::getMasa))
+                //.distinct()
+                .limit(10)
+                //.collect(Collectors.toMap(StatekPowietrzny::getTyp, statek -> statek));
+                .collect(Collectors.groupingBy(StatekPowietrzny::getTyp,
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                List::getFirst)
+                        ));
+    }
+
+    List<String> zwrocNazwy() {
+        List<SpadochronRatowniczy> spadochrony = wszystkieStatki.stream()
+                .filter(SpadochronRatowniczy.class::isInstance)
+                .map(SpadochronRatowniczy.class::cast)
+                .distinct()
+                .collect(Collectors.toList());
+
+        if (!spadochrony.isEmpty()) {
+            spadochrony.removeLast();
+        }
+
+        return spadochrony.stream()
+                .limit(2)
+                .map(Spadochron::toString)
+                .toList();
+    }
+
+    void modyfikujNazwy() {
+        Random random = new Random();
+        napedzaneStatki.stream()
+                .filter(Samolot.class::isInstance)
+                .map(Samolot.class::cast)
+                .filter(samolot -> samolot.getMasa()>5000)
+                .sorted(Comparator.comparingDouble(Samolot::getPredkoscWznoszenia).reversed())
+                .skip(5)
+                .limit(15)
+                .forEach(samolot -> {
+                    if (random.nextInt(100) < 50) { // inne prawdopodobieństwo, zeby bylo cos widac
+                        samolot.setTyp("[" + samolot.getTyp() + "]");
+                        System.out.println(samolot); // zeby bylo widac
+                    }
+                });
+
     }
 
 }
