@@ -1,9 +1,16 @@
 package pl.edu.pw.mini.zpoif.task4b.building;
 
 public class WygodnaBudka extends Budka {
-    public String bazgrol;
+    private String bazgrol;
     private String szyfrDoSejfu;
     public Sejf sejf;
+    private static Wyrko dobreWyrko;
+    private Integer pole1 = 5;
+    protected Integer pole2 = 2;
+
+    static {
+        dobreWyrko = new WygodnaBudka().new MegaWyrko();
+    }
 
     public WygodnaBudka() {
         this.bazgrol = "Default Bazgrol";
@@ -16,7 +23,7 @@ public class WygodnaBudka extends Budka {
         this.sejf = new Sejf();
     }
 
-    public Integer exampleMethod() {
+    private Integer exampleMethod() {
         return 42;
     }
 
@@ -24,6 +31,24 @@ public class WygodnaBudka extends Budka {
         public void open(String szyfr) {
             System.out.println("Sejf otwarty z szyfrem: " + szyfr);
         }
+    }
+
+    class Wyrko {
+    }
+
+    class SuperWyrko extends Wyrko {
+    }
+
+    class MegaWyrko extends SuperWyrko {
+    }
+
+    @Override
+    public String toString() {
+        return "WygodnaBudka{" +
+                "bazgrol='" + bazgrol + '\'' +
+                ", szyfrDoSejfu='" + szyfrDoSejfu + '\'' +
+                ", sejf=" + sejf +
+                '}';
     }
 }
 

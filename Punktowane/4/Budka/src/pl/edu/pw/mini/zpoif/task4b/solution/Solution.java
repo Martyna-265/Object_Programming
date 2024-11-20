@@ -11,12 +11,12 @@ public abstract class Solution {
     /**
      * Zadanie 2: Wypisanie wartości pola bazgrol z przekazanego obiektu klasy WygodnaBudka.
      */
-    public abstract void task2(WygodnaBudka wygodnaBudka);
+    public abstract void task2(Object wygodnaBudka);
 
     /**
      * Zadanie 3: Ustawienie wartości pola szyfrDoSejfu na wartość pola UNIWERSALNY_SZYFR_DO_SEJFU.
      */
-    public abstract void task3(WygodnaBudka wygodnaBudka);
+    public abstract void task3(Object wygodnaBudka);
 
     /**
      * Zadanie 4: Wywołanie jednej bezparametrowej metody zwracającej Integer
