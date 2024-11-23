@@ -11,7 +11,7 @@ public class MySolution extends Solution{
     public Object task1() {
         try {
             Class<?> classWygodnaBudka = Class.forName("pl.edu.pw.mini.zpoif.task4b.building.WygodnaBudka");
-            Object wygodnaBudka = classWygodnaBudka.getDeclaredConstructor().newInstance();
+            Object wygodnaBudka = classWygodnaBudka.getConstructor().newInstance();
             return wygodnaBudka;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -38,7 +38,7 @@ public class MySolution extends Solution{
         try {
             Field uniwersalmySzyfrField = classBudka.getDeclaredField("UNIWERSALNY_SZYFR_DO_SEJFU");
             uniwersalmySzyfrField.setAccessible(true);
-            String uniwersalnySzyfr = (String)uniwersalmySzyfrField.get(wygodnaBudka);
+            String uniwersalnySzyfr = (String)uniwersalmySzyfrField.get(null);
             Field szyfrField = classWygodnaBudka.getDeclaredField("szyfrDoSejfu");
             szyfrField.setAccessible(true);
             szyfrField.set(wygodnaBudka, uniwersalnySzyfr);
@@ -68,16 +68,17 @@ public class MySolution extends Solution{
     @Override
     public void task5() {
         try {
-            Class<?> wygodnaBudkaClass = Class.forName("pl.edu.pw.mini.zpoif.task4b.building.WygodnaBudka");
-            Field dobreWyrkoField = wygodnaBudkaClass.getDeclaredField("dobreWyrko");
-            dobreWyrkoField.setAccessible(true);
-            Class<?> dobreWyrkoClass = dobreWyrkoField.get(null).getClass();
-            System.out.println("Hierarchia klas dla: " + dobreWyrkoField.getName());
+//            Class<?> wygodnaBudkaClass = Class.forName("pl.edu.pw.mini.zpoif.task4b.building.WygodnaBudka");
+//            Field dobreWyrkoField = wygodnaBudkaClass.getDeclaredField("dobreWyrko");
+//            dobreWyrkoField.setAccessible(true);
+//            Class<?> dobreWyrkoClass = dobreWyrkoField.get(null).getClass();
+//            System.out.println("Hierarchia klas dla: " + dobreWyrkoField.getName());
+            Class <?> dobreWyrkoClass = WygodnaBudka.class.getDeclaredField("dobreWyrko").getType();
             while(dobreWyrkoClass != null) {
                 System.out.println(dobreWyrkoClass.getSimpleName());
                 dobreWyrkoClass = dobreWyrkoClass.getSuperclass();
             }
-        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -104,7 +105,9 @@ public class MySolution extends Solution{
 
             Object sejf = sejfField.get(wygodnaBudka);
             Class<?> sejfClass = sejf.getClass();
+            // Class<?> sejfClass = sejfField.getType();
             Method openMethod = sejfClass.getMethod("open", String.class);
+            openMethod.setAccessible(true);
 
             Field szyfrDoSejfuField = wygodnaBudkaClass.getDeclaredField("szyfrDoSejfu");
             szyfrDoSejfuField.setAccessible(true);
@@ -128,6 +131,10 @@ public class MySolution extends Solution{
                     System.out.println(klasa.getSimpleName());
                 }
             }
+
+//            Arrays.stream(klasyWewnetrzne).filter(c -> Modifier.isProtected(c.getModifiers()))
+//                    .forEach(c -> System.out.println(c.getSimpleName()));
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
