@@ -8,7 +8,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Kelner extends ObiektGastronomiczny implements Kelnerable {
 
@@ -34,12 +37,9 @@ public class Kelner extends ObiektGastronomiczny implements Kelnerable {
                 methods[i].invoke(pracownik);
                 return;
             }
-            ArrayList<Method> methodsWithAnnotation = new ArrayList<>();
-            for (Method method : methods) {
-                if (method.isAnnotationPresent((Class<? extends Annotation>) adnotacja)) {
-                    methodsWithAnnotation.add(method);
-                }
-            }
+            List<Method> methodsWithAnnotation = Arrays.stream(methods)
+                    .filter(method -> method.isAnnotationPresent((Class<? extends Annotation>) adnotacja))
+                    .toList();
             if (!methodsWithAnnotation.isEmpty()) {
                 int i = random.nextInt(methodsWithAnnotation.size());
                 Method method = methodsWithAnnotation.get(i);
