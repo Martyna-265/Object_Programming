@@ -1,10 +1,11 @@
 package pl.edu.pw.mini.zpoif.task5.model;
 
-public abstract class Pracownik {
+public abstract class Pracownik extends ObiektGastronomiczny{
     private String imie;
     private String nazwisko;
 
     public Pracownik(String imie, String nazwisko) {
+        super();
         this.imie = imie;
         this.nazwisko = nazwisko;
     }
